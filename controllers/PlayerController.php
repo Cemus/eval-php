@@ -13,17 +13,17 @@ class PlayerController extends AbstractController{
     public function setPlayer(ViewPlayer $player): self { $this->player = $player; return $this; }
     public function addPlayers():string{
         if(isset($_POST['submitAddPlayer'])){
-            if(empty($_POST['pseudo']) || empty($_POST['email']) || empty($_POST['score']) || empty($_POST['password'])){
-                return "Veuillez remplir les champs !";
+            if(empty($_POST['pseudo']) || empty($_POST['email']) || empty($_POST['password'])){
+                return "Veuillez remplir les champs nécessaires !";
             }
             if(!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
                 return "Email pas au bon format !";
             }
 
             $pseudo = sanitize($_POST['pseudo']);
-            $score = sanitize($_POST['score']);
             $email = sanitize($_POST['email']);
             $password = sanitize($_POST['password']);
+            empty($_POST['score']) ? $score = 0 : $score = sanitize($_POST['score'] );
 
             $password = password_hash($password, PASSWORD_BCRYPT);
 
@@ -33,8 +33,9 @@ class PlayerController extends AbstractController{
 
             $this->getModel()->setPseudo($pseudo)->setScore($score)->setEmail($email)->setPassword($password)->add();
         
-            return "$pseudo a été enregistré avec succès !";
+            return "Le joueur " . $pseudo . " a été enregistré avec succès !";
         }
+        return "";
     }
     public function getAllPlayers():string{
         $playerList = "";
@@ -47,8 +48,6 @@ class PlayerController extends AbstractController{
         return $playerList;
      }
     public function render():void{
-    $signUpMessage = "";
-
     $signUpMessage = $this->addPlayers();
     $playerList = $this->getAllPlayers();
 
