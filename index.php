@@ -3,15 +3,12 @@
 
 include "./interfaces/InterfaceModel.php";
 
-
 include "./abstracts/AbstractController.php";
 include "./controllers/PlayerController.php";
 
 include "./views/ViewFooter.php";
 include "./views/ViewHeader.php";
 include "./views/ViewPlayer.php";
-
-
 
 include "./models/ModelPlayer.php";
 
