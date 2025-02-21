@@ -4,8 +4,10 @@ class ViewFooter{
     public function displayView():string{
         ob_start();
         ?>
-        <p>Working view</p>
+            <footer>Super footer</footer>
+        </body>
+        </html>
         <?php
-        return ob_clean();
+        return ob_get_contents();
     }
 }

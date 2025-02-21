@@ -4,6 +4,12 @@ abstract class AbstractController{
     private ViewHeader $header;
     private ViewFooter $footer;
     private InterfaceModel $model;
+
+    public function __construct(ViewHeader $header, ViewFooter $footer, InterfaceModel $model) {
+        $this->header = $header;
+        $this->footer = $footer;
+        $this->model = $model;
+    }
     public function getHeader(): ViewHeader { return $this->header; }
     public function setHeader(ViewHeader $header): self { $this->header = $header; return $this; }
 
@@ -12,7 +18,5 @@ abstract class AbstractController{
 
     public function getModel(): InterfaceModel { return $this->model; }
     public function setModel(InterfaceModel $model): self { $this->model = $model; return $this; }
-    public function render():void{
-        
-    }
+    abstract public function render():void;
 }
