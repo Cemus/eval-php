@@ -11,6 +11,17 @@ class ViewHeader{
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Supergame</title>
         </head>
+        <style>
+            main {
+                display:flex;
+                justify-content:space-around;
+                align-items: center;
+            }
+            form {
+                display: flex;
+                flex-direction: column;
+            }
+        </style>
         <body>
             <header>
                 <h1>Supergame</h1>
